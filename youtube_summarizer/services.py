@@ -1,5 +1,5 @@
 import re
-import os # Import the os module to access environment variables
+import os
 from typing import List, Optional, Union
 from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound, TranscriptsDisabled
 from youtube_transcript_api.formatters import TextFormatter
@@ -206,3 +206,4 @@ async def get_youtube_transcript_and_metadata(
         "final_transcript_text": final_text_output,
         "message": status_message
     }
+
