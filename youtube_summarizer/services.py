@@ -1,7 +1,9 @@
 import re
+import os # Import the os module to access environment variables
 from typing import List, Optional, Union
 from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound, TranscriptsDisabled
 from youtube_transcript_api.formatters import TextFormatter
+from youtube_transcript_api.proxies import WebshareProxyConfig
 from youtube_summarizer.models import TranscriptSnippet
 
 def extract_video_id(url_or_id: str) -> str:
@@ -43,7 +45,6 @@ async def get_youtube_transcript_and_metadata(
     languages: Optional[List[str]] = None,
     preserve_formatting: bool = False,
     translate_to: Optional[str] = None,
-    # punctuated_transcript parameter removed
     start_time: Optional[Union[float, str]] = None,
     end_time: Optional[Union[float, str]] = None
 ):
@@ -76,8 +77,34 @@ async def get_youtube_transcript_and_metadata(
     if not languages:
         languages = ['en']
 
-    try:
+    # --- Proxy Configuration ---
+    proxy_username = os.getenv("WEBSHARE_PROXY_USERNAME")
+    proxy_password = os.getenv("WEBSHARE_PROXY_PASSWORD")
+    proxy_locations_str = os.getenv("WEBSHARE_IP_LOCATIONS")
+    
+    yt_api = None
+    if proxy_username and proxy_password:
+        try:
+            proxy_config_kwargs = {
+                "proxy_username": proxy_username,
+                "proxy_password": proxy_password,
+            }
+            if proxy_locations_str:
+                proxy_config_kwargs["filter_ip_locations"] = [loc.strip() for loc in proxy_locations_str.split(',')]
+
+            proxy_config = WebshareProxyConfig(**proxy_config_kwargs)
+            yt_api = YouTubeTranscriptApi(proxy_config=proxy_config)
+            print("YouTubeTranscriptApi initialized with Webshare proxies.")
+        except Exception as e:
+            print(f"Failed to initialize YouTubeTranscriptApi with proxies: {e}. Proceeding without proxies.")
+            yt_api = YouTubeTranscriptApi() # Fallback to no proxy
+    else:
+        print("No proxy credentials found. YouTubeTranscriptApi initialized without proxies.")
         yt_api = YouTubeTranscriptApi()
+    # --- End Proxy Configuration ---
+
+    try:
+        # Use the initialized yt_api instance
         transcript_list = yt_api.list(processed_video_id)
         transcript_obj = None
 
@@ -140,8 +167,8 @@ async def get_youtube_transcript_and_metadata(
             ]
 
         formatter = TextFormatter()
-        final_text_output = formatter.format_transcript(filtered_transcript_snippets) # Always raw, concatenated text
-        status_message = "Transcript fetched and processed successfully." # Simplified message
+        final_text_output = formatter.format_transcript(filtered_transcript_snippets)
+        status_message = "Transcript fetched and processed successfully."
 
     except (NoTranscriptFound, TranscriptsDisabled) as e:
         status_message = f"Error fetching transcript: {e}. It might not have subtitles or they are disabled."
