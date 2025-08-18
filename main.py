@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from youtube_summarizer.routes import router as youtube_summarizer_router # Import the router
 
 app = FastAPI(
-    title="TypingMind Plugin Server",
-    description="A FastAPI server hosting various plugins for TypingMind.",
+    title="TypingMind Youtube Summarizer Plugin Server",
+    description="The FastAPI server for TypingMind Youtube Summarizer plugin.",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
@@ -24,4 +24,5 @@ app.include_router(youtube_summarizer_router, prefix="/api/v1")
 
 @app.get("/")
 async def read_root():
+
     return {"message": "Plugin Server is running!"}
