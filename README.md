@@ -1,8 +1,8 @@
 # YouTube Summarizer Server
 
-## Project Overview
+## Overview
 
-This repository hosts the **Plugin Server** powering the [YouTube Summarizer Plugin](https://cloud.typingmind.com/plugins/p-01K2ZV673969YHSTSY6V22YDXK) for [TypingMind](https://typingmind.com/). Built with Python and FastAPI, it provides a robust and efficient backend for fetching and processing YouTube video transcripts.
+This repository hosts the **Plugin Server** powering the [YouTube Summarizer Plugin](https://cloud.typingmind.com/plugins/p-01K2ZV673969YHSTSY6V22YDXK) for [TypingMind](https://typingmind.com/). Built with Python and FastAPI, this server leverages the `youtube-transcript-api` library to fetch transcripts, meaning **no YouTube Data API key is required**. It provides a robust and efficient backend for fetching and processing YouTube video transcripts.
 
 **Important Deployment Note:**
 Be aware that YouTube actively blocks IP addresses associated with cloud providers (e.g., Render.com, AWS, Google Cloud). This means direct deployment to such platforms may result in errors when attempting to fetch transcripts.
@@ -214,4 +214,8 @@ Render will now begin the deployment process. You can monitor the build and depl
 
 Your YouTube Summarizer Plugin in TypingMind is now configured to use your deployed server with Webshare proxies.
 
+---
 
+## License
+
+This project is licensed under the **MIT License**. See the `LICENSE` file in the repository root for full details.
