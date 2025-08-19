@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository hosts a **lightweight FastAPI server** specifically designed to power the [YouTube Summarizer Plugin](https://cloud.typingmind.com/plugins/p-01K2ZV673969YHSTSY6V22YDXK) within the [TypingMind](https://typingmind.com/) platform. Built with Python and FastAPI, it provides a robust and efficient backend for fetching and processing YouTube video transcripts.
+This repository hosts the **FastAPI server** powering the [YouTube Summarizer Plugin](https://cloud.typingmind.com/plugins/p-01K2ZV673969YHSTSY6V22YDXK) for [TypingMind](https://typingmind.com/). Built with Python and FastAPI, it provides a robust and efficient backend for fetching and processing YouTube video transcripts.
 
 **Important Deployment Note:**
 While this server is optimized for minimal resource consumption, it's crucial to be aware that YouTube actively blocks IP addresses associated with cloud providers (e.g., Render.com, AWS, Google Cloud). This means direct deployment to such platforms may result in `VideoUnavailable` or `RequestBlocked` errors when attempting to fetch transcripts.
@@ -220,3 +220,4 @@ Render will now begin the deployment process. You can monitor the build and depl
 5.  **Save Changes**.
 
 Your YouTube Summarizer Plugin in TypingMind is now configured to use your deployed server with Webshare proxies.
+
