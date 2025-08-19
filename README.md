@@ -26,10 +26,9 @@ Before you begin, ensure you have the following installed:
 ### Step 1: Clone the Repository
 
 Open your terminal or command prompt and clone this repository to your local machine:
-    ```bash
+    
     git clone https://github.com/Btran1291/TypingMind-Youtube-Summarizer-Server.git
     cd TypingMind-Youtube-Summarizer-Server
-    ```
 
 ### Step 2: Install Poetry
 
@@ -46,6 +45,7 @@ If you don't have Poetry installed, follow these instructions. If you already ha
     After installation, you might need to close and reopen your terminal, or run the command provided by the installer to add Poetry to your system's `PATH` (e.g., `[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\YourUser\AppData\Roaming\Python\Scripts", "User")` on Windows).
 
     Verify the installation:
+
     ```bash
     poetry --version
     ```
@@ -53,18 +53,16 @@ If you don't have Poetry installed, follow these instructions. If you already ha
 ### Step 3: Install Project Dependencies
 
 Navigate to your project directory (if you're not already there) and let Poetry install all the necessary libraries:
-    ```bash
+
     cd TypingMind-Youtube-Summarizer-Server # Only if you're not already in the directory
     poetry install
-    ```
 This command will create a dedicated virtual environment for your project and install all dependencies.
 
 ### Step 4: Run the FastAPI Server
 
 Once dependencies are installed, you can start the server:
-    ```bash
+
     poetry run uvicorn main:app --reload --host 0.0.0.0 --port 8000
-    ```
 The server will start and be accessible at `http://127.0.0.1:8000`. You will see messages in your terminal indicating that Uvicorn is running.
 
 ### Step 5: Configure the Plugin in TypingMind (Local Access)
@@ -99,9 +97,8 @@ If you want to access your locally running plugin server from other devices (e.g
 ### Step 2: Start the Ngrok Tunnel
 
 While your FastAPI server is running locally (from Step 4 of "Hosting the Server Locally"), open a **new terminal or command prompt window** and run:
-    ```bash
+
     ngrok http 8000
-    ```
 Ngrok will start and provide you with a public `https://` URL (e.g., `https://<random-id>.ngrok-free.app`). This URL tunnels internet traffic directly to your local server.
 
 ### Step 3: Configure the Plugin in TypingMind (Remote Access)
@@ -146,7 +143,7 @@ This section guides you through deploying your YouTube Summarizer Server on [Ren
 
 ### Why Webshare Proxies are Essential for Cloud Deployment
 
-This server does **not** utilize the official YouTube Data API, which has strict quotas but bypasses IP blocking. Instead, it relies on the `youtube-transcript-api` library, which directly accesses YouTube's unofficial endpoints. When deployed on cloud platforms like Render.com, the server's IP address is easily identified as a data center, leading to YouTube blocking requests (resulting in `VideoUnavailable` or `RequestBlocked` errors).
+This server does **not** utilize the official YouTube Data API, which has strict quotas but bypasses IP blocking. Instead, it relies on the `youtube-transcript-api` library, which directly accesses YouTube's unofficial endpoints. When deployed on cloud platforms like Render.com, the server's IP address is easily identified as a data center, leading to YouTube blocking requests (resulting in fetching errors).
 
 To ensure reliable transcript fetching from a cloud environment, **Webshare rotating residential proxies are mandatory**. These proxies route your requests through IP addresses from real ISPs, making them appear as legitimate user traffic and effectively bypassing YouTube's blocks.
 
@@ -216,6 +213,5 @@ Render will now begin the deployment process. You can monitor the build and depl
 5.  **Save Changes**.
 
 Your YouTube Summarizer Plugin in TypingMind is now configured to use your deployed server with Webshare proxies.
-
 
 
