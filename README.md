@@ -26,7 +26,6 @@ Before you begin, ensure you have the following installed:
 ### Step 1: Clone the Repository
 
 Open your terminal or command prompt and clone this repository to your local machine:
-
     ```bash
     git clone https://github.com/Btran1291/TypingMind-Youtube-Summarizer-Server.git
     cd TypingMind-Youtube-Summarizer-Server
@@ -54,7 +53,6 @@ If you don't have Poetry installed, follow these instructions. If you already ha
 ### Step 3: Install Project Dependencies
 
 Navigate to your project directory (if you're not already there) and let Poetry install all the necessary libraries:
-
     ```bash
     cd TypingMind-Youtube-Summarizer-Server # Only if you're not already in the directory
     poetry install
@@ -64,7 +62,6 @@ This command will create a dedicated virtual environment for your project and in
 ### Step 4: Run the FastAPI Server
 
 Once dependencies are installed, you can start the server:
-
     ```bash
     poetry run uvicorn main:app --reload --host 0.0.0.0 --port 8000
     ```
@@ -102,7 +99,6 @@ If you want to access your locally running plugin server from other devices (e.g
 ### Step 2: Start the Ngrok Tunnel
 
 While your FastAPI server is running locally (from Step 4 of "Hosting the Server Locally"), open a **new terminal or command prompt window** and run:
-
     ```bash
     ngrok http 8000
     ```
@@ -220,5 +216,6 @@ Render will now begin the deployment process. You can monitor the build and depl
 5.  **Save Changes**.
 
 Your YouTube Summarizer Plugin in TypingMind is now configured to use your deployed server with Webshare proxies.
+
 
 
