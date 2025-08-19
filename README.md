@@ -76,7 +76,7 @@ To use your locally running server with the TypingMind plugin:
     ```
     http://localhost:8000
     ```
-    **Important Note:** This `http://localhost:8000` URL is only accessible from your local machine where the server is hosted. If you want to access it from other devices, check out the [Ngrok Tunneling](#ngrok-tunneling) section below.
+    **Important Note:** This `http://localhost:8000` URL is only accessible from your local machine where the server is hosted. If you want to access it from other devices, check out the [Ngrok Tunneling](#ngrok-tunneling-access-from-other-devices) section below.
 
 ---
 
@@ -219,4 +219,5 @@ Your YouTube Summarizer Plugin in TypingMind is now configured to use your deplo
 ## License
 
 This project is licensed under the **MIT License**. See the `LICENSE` file in the repository root for full details.
+
 
